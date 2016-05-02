@@ -1,0 +1,74 @@
+#!/bin/bash
+
+function exit_error {
+    echo "$1" >&2
+    exit 1
+}
+
+function print_help {
+    echo "Usage: $0 [-u <url>] [-j <json_file>] [-k <lk>] [-d] [-h]"
+    echo "  -u send data to given URL"
+    echo "  -j read data from given file in JSON format"
+    echo "  -k use given LK"
+    echo "  -d enable debug"
+    echo "  -h show this help"
+    exit 0
+}
+
+while getopts ":u:j:k:hd" opt; do
+  case $opt in
+    u)
+      url=$OPTARG
+      ;;
+    j)
+      json=$OPTARG
+      ;;
+    k)
+      lk=$OPTARG
+      ;;
+    h)
+      print_help
+      ;;
+    d)
+      debug='-v'
+      ;;
+    \?)
+      exit_error "Invalid option: -$OPTARG"
+      ;;
+  esac
+done
+
+if [ ! -z $debug ]; then
+   set -xv
+else
+   debug='-s -o /dev/null'
+fi
+
+if [ "x$url" = "x" ]; then
+    url='https://my.nethesis.it/inventory/store'
+fi
+
+
+if [ "x$lk" = "x" ]; then
+    lk=`/sbin/e-smith/config getprop nethupdate SystemID`
+fi
+
+if [ -z $lk ]; then
+    exit_error "Invalid LK"
+fi
+
+if [ "x$json" = "x" ]; then
+    json=`/usr/bin/facter -j`
+else
+    if [ -f $json ]; then
+        json=`/bin/cat $json`
+    else
+        exit_error "No such file or directory: $json"
+    fi
+fi
+
+
+/usr/bin/curl $debug -X POST --header "Content-Type: application/json" --header "Accept: application/json" -d "{
+  \"lk\": \"$lk\",
+  \"data\": $json
+}" "${url}"

@@ -1,0 +1,20 @@
+#!/usr/bin/perl 
+#
+# Copyright (C) 2015 Nethesis S.r.l.
+# http://www.nethesis.it - support@nethesis.it
+# 
+# This script is part of NethServer Enterprise
+# All rights are reserved
+#
+
+use esmith::Build::CreateLinks qw(:all);
+
+
+#
+# nethserver-inventory-update event
+#
+event_actions('nethserver-inventory-update', qw(
+    initialize-default-databases        00
+));
+
+
