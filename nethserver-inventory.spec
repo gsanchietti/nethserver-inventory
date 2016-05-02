@@ -16,7 +16,6 @@ Inventory based on facter.
 %setup -q
 
 %build
-perl createlinks
 
 %install
 rm -rf %{buildroot}
