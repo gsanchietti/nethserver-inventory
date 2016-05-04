@@ -45,7 +45,7 @@ else
 fi
 
 if [ "x$url" = "x" ]; then
-    url='https://my.nethesis.it/inventory/store'
+    url='https://my.nethesis.it/isa/inventory/store'
 fi
 
 
@@ -67,8 +67,20 @@ else
     fi
 fi
 
+TMP=`mktemp`
+RET=0
 
-/usr/bin/curl $debug -X POST --header "Content-Type: application/json" --header "Accept: application/json" -d "{
-  \"lk\": \"$lk\",
-  \"data\": $json
-}" "${url}"
+trap "{ rm -f $TMP; exit $RET; }" SIGINT SIGTERM EXIT
+
+echo "{\"data\": {\"lk\": \"$lk\", \"data\": $json}}" > $TMP
+
+code=`/usr/bin/curl $debug -L -w "%{http_code}" -X POST \
+   --header "Content-Type: application/json" --header "Accept: application/json"  \
+   --data-binary @$TMP \
+   $url`
+
+if [ "$code" != "200" ]; then
+   RET=1
+fi
+
+exit $RET
