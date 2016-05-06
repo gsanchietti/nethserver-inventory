@@ -1,6 +1,6 @@
 Summary: NethServer ARDAD
 Name: nethserver-inventory
-Version: 0.0.1
+Version: 1.0.0
 Release: 1%{?dist}
 License: GPL
 Source0: %{name}-%{version}.tar.gz
@@ -28,4 +28,7 @@ rm -rf %{buildroot}
 %doc LICENSE
 
 %changelog
+* Fri May 06 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.0-1
+- First public release [NH:4148]
+
 
