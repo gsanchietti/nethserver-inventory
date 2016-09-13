@@ -1,4 +1,4 @@
-Summary: NethServer ARDAD
+Summary: NethServer Inventory
 Name: nethserver-inventory
 Version: 1.0.1
 Release: 1%{?dist}
