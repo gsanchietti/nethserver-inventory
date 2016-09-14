@@ -58,7 +58,7 @@ if [ -z $lk ]; then
 fi
 
 if [ "x$json" = "x" ]; then
-    json=`/usr/bin/facter -j`
+    json=`/opt/puppetlabs/puppet/bin/facter -j`
 else
     if [ -f $json ]; then
         json=`/bin/cat $json`

@@ -5,11 +5,11 @@ Release: 1%{?dist}
 License: GPL
 Source0: %{name}-%{version}.tar.gz
 BuildArch: noarch
-Requires: facter >= 2.4.6
-Requires: rubygem-json
+
+Requires: puppet-agent
 BuildRequires: nethserver-devtools
 
-%description 
+%description
 Inventory based on facter.
 
 %prep
