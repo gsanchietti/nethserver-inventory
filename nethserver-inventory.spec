@@ -1,6 +1,6 @@
 Summary: NethServer Inventory
 Name: nethserver-inventory
-Version: 1.0.1
+Version: 2.0.0
 Release: 1%{?dist}
 License: GPL
 Source0: %{name}-%{version}.tar.gz
@@ -28,6 +28,9 @@ rm -rf %{buildroot}
 %doc LICENSE
 
 %changelog
+* Thu Sep 22 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.0-1
+- First NS 7 release
+
 * Fri Jul 15 2016 Edoardo Spadoni <edoardo.spadoni@nethesis.it> - 1.0.1-1
 - flashstart: read log from yesterday, avoid error if log file doesn not exists
 - Add flashstart fact [US #238]
