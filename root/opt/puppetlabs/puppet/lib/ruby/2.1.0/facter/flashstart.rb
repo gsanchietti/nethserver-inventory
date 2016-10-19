@@ -3,7 +3,7 @@
 Facter.add('flashstart') do
   setcode do
     if File.exist?("/var/log/squid/access.log")
-      file = File.open("/var/log/squid/access.log", 'r')
+      file = File.open("/var/log/squid/access.log", 'rb')
       ips = Array.new
       while !file.eof?
         line = file.readline
