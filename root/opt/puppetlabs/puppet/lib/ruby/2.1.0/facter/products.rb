@@ -13,7 +13,8 @@ Facter.add('nh-products') do
         end
 
         products['categories'].each do |_c|
-            if _c['groups'] & installed_groups
+            # check if intersection is empty
+            if (_c['groups'] & installed_groups).any?
                 next if _c['id'] == 'BASENG0001'
                 installed_categories[_c['id']] = _c['name']
             end
