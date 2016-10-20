@@ -1,6 +1,6 @@
 Summary: NethServer Inventory
 Name: nethserver-inventory
-Version: 2.0.1
+Version: 2.0.2
 Release: 1%{?dist}
 License: GPL
 Source0: %{name}-%{version}.tar.gz
@@ -28,6 +28,9 @@ rm -rf %{buildroot}
 %doc LICENSE
 
 %changelog
+* Thu Oct 20 2016 Davide Principi <davide.principi@nethesis.it> - 2.0.2-1
+- Gestire i prodotti nethesis nell'inventario e mostrarli su my - Nethesis/dev#5019
+
 * Wed Oct 19 2016 Davide Principi <davide.principi@nethesis.it> - 2.0.1-1
 - Fix bad encoding file opening of flashstart plugin
 
