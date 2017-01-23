@@ -1,6 +1,6 @@
 Summary: NethServer ARDAD
 Name: nethserver-inventory
-Version: 1.0.1
+Version: 1.0.2
 Release: 1%{?dist}
 License: GPL
 Source0: %{name}-%{version}.tar.gz
@@ -28,6 +28,10 @@ rm -rf %{buildroot}
 %doc LICENSE
 
 %changelog
+* Mon Jan 23 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.2-1
+- added products facter plugin to handle nethserver-products
+-  facter: add users fact. Nethesis/dev#5051
+
 * Fri Jul 15 2016 Edoardo Spadoni <edoardo.spadoni@nethesis.it> - 1.0.1-1
 - flashstart: read log from yesterday, avoid error if log file doesn not exists
 - Add flashstart fact [US #238]
