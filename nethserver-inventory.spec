@@ -1,6 +1,6 @@
 Summary: NethServer Inventory
 Name: nethserver-inventory
-Version: 2.0.3
+Version: 2.0.4
 Release: 1%{?dist}
 License: GPL
 Source0: %{name}-%{version}.tar.gz
@@ -28,6 +28,10 @@ rm -rf %{buildroot}
 %doc LICENSE
 
 %changelog
+* Mon Jan 23 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.4-1
+- facter: handled empty categories and products
+- facter: add users fact. Nethesis/dev#5051
+
 * Wed Nov 02 2016 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.3-1
 - nethserver products: create cache for pkginfo compsdump errors. Nethesis/dev#5026
 
