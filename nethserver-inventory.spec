@@ -1,6 +1,6 @@
 Summary: NethServer Inventory
 Name: nethserver-inventory
-Version: 2.0.4
+Version: 2.0.5
 Release: 1%{?dist}
 License: GPL
 Source0: %{name}-%{version}.tar.gz
@@ -28,6 +28,9 @@ rm -rf %{buildroot}
 %doc LICENSE
 
 %changelog
+* Wed Apr 19 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.5-1
+- Added timeout - Nethesis/dev#5031
+
 * Mon Jan 23 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.4-1
 - facter: handled empty categories and products
 - facter: add users fact. Nethesis/dev#5051
