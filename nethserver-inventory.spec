@@ -1,6 +1,6 @@
 Summary: NethServer ARDAD
 Name: nethserver-inventory
-Version: 1.0.3
+Version: 1.0.4
 Release: 1%{?dist}
 License: GPL
 Source0: %{name}-%{version}.tar.gz
@@ -28,6 +28,9 @@ rm -rf %{buildroot}
 %doc LICENSE
 
 %changelog
+* Wed Apr 19 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.4-1
+- Added timeout - Nethesis/dev#5031
+
 * Mon Apr 10 2017 Edoardo Spadoni <edoardo.spadoni@nethesis.it> - 1.0.3-1
 Fix plugin RAID e MOUNT POINTS. Nethesis/dev#5105
 
