@@ -3,7 +3,7 @@
 Facter.add('voips') do
   confine :osfamily => 'RedHat'
   setcode do
-    tmp = Facter::Core::Execution.exec('mysql asterisk -e \'SELECT DISTINCT id FROM sip WHERE id REGEXP "^[0-9]+$";\'')
+    tmp = Facter::Core::Execution.exec('mysql asterisk -e \'SELECT DISTINCT id FROM sip WHERE id REGEXP "^[0-9]+$";\' 2> /dev/null')
     voips = []
     if tmp
       tmp.split(/\n/).each do |voip|
