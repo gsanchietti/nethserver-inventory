@@ -1,6 +1,6 @@
 Summary: NethServer Inventory
 Name: nethserver-inventory
-Version: 2.0.5
+Version: 2.0.6
 Release: 1%{?dist}
 License: GPL
 Source0: %{name}-%{version}.tar.gz
@@ -28,6 +28,10 @@ rm -rf %{buildroot}
 %doc LICENSE
 
 %changelog
+* Fri Jun 30 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.6-1
+- KPI: count VOIP devices - Nethesis/dev#5166 Nethesis/dev#5145
+- KPI: count MAC addresses - Nethesis/dev#5146
+
 * Wed Apr 19 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.5-1
 - Added timeout - Nethesis/dev#5031
 
