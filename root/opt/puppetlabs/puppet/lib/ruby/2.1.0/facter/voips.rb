@@ -7,10 +7,11 @@ Facter.add('voips') do
     voips = []
 
     # detect nethserver-nethvoice version
-    isVoice13 = Facter::Core::Execution.exec('rpm -qa | grep nethserver-nethvoice | grep 13')
+    isVoice14 = system('rpm -qi nethserver-nethvoice14 >/dev/null')
+    isVoice11 = system('rpm -qi nethserver-nethvoice >/dev/null')
 
-    if isVoice13.length > 0
-      # nethvoice 13
+    if isVoice14
+      # nethvoice 14
       tmp2 = Facter::Core::Execution.exec('asterisk -rx "database show" | grep \'^/registrar/contact/.*user_agent\' | sed \'s/^\/registrar\/contact\/\([0-9]*\);.*"user_agent":"\([^"]*\)".*/\1 \2/\' 2> /dev/null')
       if tmp2
         tmp2.split(/\n/).each do |agent|
@@ -23,7 +24,8 @@ Facter.add('voips') do
           voips.push({ "extension" => voip.strip, "useragent" => agents[voip] })
         end
       end
-    else
+    end
+    if isVoice11
       #nethvoice 11
       tmp = Facter::Core::Execution.exec('mysql asterisk -e \'SELECT DISTINCT id FROM sip WHERE id REGEXP "^[0-9]+$";\' 2> /dev/null')
       if tmp
