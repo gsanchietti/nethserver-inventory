@@ -1,6 +1,6 @@
 Summary: NethServer ARDAD
 Name: nethserver-inventory
-Version: 1.0.5
+Version: 1.0.6
 Release: 1%{?dist}
 License: GPL
 Source0: %{name}-%{version}.tar.gz
@@ -28,6 +28,9 @@ rm -rf %{buildroot}
 %doc LICENSE
 
 %changelog
+* Mon Sep 04 2017 Edoardo Spadoni <edoardo.spadoni@nethesis.it> - 1.0.6-1
+Release 1.0.6
+
 * Fri Jun 30 2017 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.5-1
 - KPI: count VOIP devices - Nethesis/dev#5166 Nethesis/dev#5145
 - KPI: count MAC addresses - Nethesis/dev#5146
