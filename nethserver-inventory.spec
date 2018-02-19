@@ -1,6 +1,6 @@
 Summary: NethServer Inventory
 Name: nethserver-inventory
-Version: 2.0.7
+Version: 2.0.8
 Release: 1%{?dist}
 License: GPL
 Source0: %{name}-%{version}.tar.gz
@@ -28,6 +28,9 @@ rm -rf %{buildroot}
 %doc LICENSE
 
 %changelog
+* Mon Feb 19 2018 Davide Principi <davide.principi@nethesis.it> - 2.0.8-1
+- Collect templates_custom and p3scan usage data
+
 * Wed Jan 10 2018 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 2.0.7-1
 - NethCTI 3: add profiling component - Nethesis/dev#5271
 
