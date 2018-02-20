@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# Send inventory to remote server
+#
+
+exec timeout -k 180 120 /usr/sbin/nethserver-inventory -u {{ $subscription{'InventoryUrl'} || "" }} -s {{ $subscription{'SystemId'} || "" }}

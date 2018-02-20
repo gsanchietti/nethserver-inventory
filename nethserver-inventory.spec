@@ -16,6 +16,7 @@ Inventory based on facter.
 %setup -q
 
 %build
+perl createlinks
 
 %install
 rm -rf %{buildroot}
@@ -25,6 +26,7 @@ rm -rf %{buildroot}
 
 %files -f %{name}-%{version}-%{release}-filelist
 %defattr(-,root,root)
+%dir %{_nseventsdir}/%{name}-update
 %doc LICENSE
 
 %changelog

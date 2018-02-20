@@ -1,4 +1,27 @@
 #!/bin/bash
+#
+# Copyright (C) 2018 Nethesis S.r.l.
+# http://www.nethesis.it - nethserver@nethesis.it
+#
+# This script is part of NethServer.
+#
+# NethServer is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License,
+# or any later version.
+#
+# NethServer is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with NethServer.  If not, see COPYING.
+#
+
+#
+# Send facter inventory to remote host
+#
 
 function exit_error {
     echo "$1" >&2
@@ -6,16 +29,16 @@ function exit_error {
 }
 
 function print_help {
-    echo "Usage: $0 [-u <url>] [-j <json_file>] [-k <lk>] [-d] [-h]"
+    echo "Usage: $0 [-u <url>] [-j <json_file>] [-s <systemid>] [-d] [-h]"
     echo "  -u send data to given URL"
     echo "  -j read data from given file in JSON format"
-    echo "  -k use given LK"
+    echo "  -s use given System ID"
     echo "  -d enable debug"
     echo "  -h show this help"
     exit 0
 }
 
-while getopts ":u:j:k:hd" opt; do
+while getopts ":u:j:s:hd" opt; do
   case $opt in
     u)
       url=$OPTARG
@@ -23,8 +46,8 @@ while getopts ":u:j:k:hd" opt; do
     j)
       json=$OPTARG
       ;;
-    k)
-      lk=$OPTARG
+    s)
+      systemid=$OPTARG
       ;;
     h)
       print_help
@@ -45,16 +68,11 @@ else
 fi
 
 if [ "x$url" = "x" ]; then
-    url='https://my.nethesis.it/isa/inventory/store'
+    exit_error "Invalid URL"
 fi
 
-
-if [ "x$lk" = "x" ]; then
-    lk=`/sbin/e-smith/config getprop nethupdate SystemID`
-fi
-
-if [ -z $lk ]; then
-    exit_error "Invalid LK"
+if [ "x$systemid" = "x" ]; then
+    exit_error "Invalid System ID"
 fi
 
 if [ "x$json" = "x" ]; then
@@ -70,9 +88,9 @@ fi
 TMP=`mktemp`
 RET=0
 
-trap "{ rm -f $TMP; exit $RET; }" SIGINT SIGTERM EXIT
+trap "{ rm -f $TMP; exit 1; }" SIGINT SIGTERM
 
-echo "{\"data\": {\"lk\": \"$lk\", \"data\": $json}}" > $TMP
+echo "{\"data\": {\"lk\": \"$systemid\", \"data\": $json}}" > $TMP
 
 code=`/usr/bin/curl $debug -L -w "%{http_code}" -X POST \
    --header "Content-Type: application/json" --header "Accept: application/json"  \
@@ -83,4 +101,5 @@ if [ "$code" != "200" ]; then
    RET=1
 fi
 
+rm -f $TMP
 exit $RET
