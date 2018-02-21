@@ -92,7 +92,7 @@ trap "{ rm -f $TMP; exit 1; }" SIGINT SIGTERM
 
 echo "{\"data\": {\"lk\": \"$systemid\", \"data\": $json}}" > $TMP
 
-code=`/usr/bin/curl $debug -L -w "%{http_code}" -X POST \
+code=`/usr/bin/curl $debug -L --header "SystemID: $systemid" -w "%{http_code}" -X POST \
    --header "Content-Type: application/json" --header "Accept: application/json"  \
    --data-binary @$TMP \
    $url`
