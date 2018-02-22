@@ -86,9 +86,8 @@ else
 fi
 
 TMP=`mktemp`
-RET=0
 
-trap "{ rm -f $TMP; exit 1; }" SIGINT SIGTERM
+trap "{ rm -f $TMP; }" SIGINT SIGTERM EXIT
 
 echo "{\"data\": {\"lk\": \"$systemid\", \"data\": $json}}" > $TMP
 
@@ -98,8 +97,5 @@ code=`/usr/bin/curl $debug -L --header "SystemID: $systemid" -w "%{http_code}" -
    $url`
 
 if [ "$code" != "200" ]; then
-   RET=1
+   exit 1
 fi
-
-rm -f $TMP
-exit $RET
