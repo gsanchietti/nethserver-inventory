@@ -24,9 +24,6 @@ use esmith::Build::CreateLinks qw(:all);
 #
 # nethserver-inventory-update event
 #
-event_templates('nethserver-inventory-update', qw(
-    /etc/cron.daily/nethserver-inventory
-));
 
 event_actions('nethserver-inventory-update', qw(
     initialize-default-databases        00

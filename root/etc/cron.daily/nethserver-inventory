@@ -22,5 +22,5 @@
 
 # Send the inventory
 
-exec /etc/cron.daily/nethserver-inventory
+exec timeout -k 180 120 /usr/sbin/nethserver-inventory -u $(/sbin/e-smith/config getprop subscription InventoryUrl) -s $(/sbin/e-smith/config getprop subscription SystemId)
 
